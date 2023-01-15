@@ -74,6 +74,7 @@ app.MapPost("/login", async (IUsuarioRepository repo, IJwtTokenGenerator jwt, Cr
 
     return Results.Ok(new AuthenticatedUser(
         usuarioExistente.UsuarioCampo,
+        token,
         "Test",
         "Test"
     ));
