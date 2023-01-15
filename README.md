@@ -11,7 +11,7 @@ git clone https://github.com/CodeINN95612/Aseguradora
 ```
 (Este generara una carpeta llamada Aseguradora en el directorio que se encuentre).
 
-##Subir Cambios.
+## Subir Cambios.
 1. Utilizar el siguiente comando para ver que archivos no se han incluido para ser subidos (debe ser dentro de la carpeta Aseguradora):
 ```bash
 git status
