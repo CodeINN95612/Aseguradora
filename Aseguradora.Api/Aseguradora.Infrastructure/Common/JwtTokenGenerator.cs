@@ -7,11 +7,11 @@ using Aseguradora.Domain.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Aseguradora.Auth.Services;
+namespace Aseguradora.Infrastructure.Common;
 
 public sealed class JwtTokenGenerator : IJwtTokenGenerator
 {
-    private JwtSettings _jwtSettings;
+    private readonly JwtSettings _jwtSettings;
     private IDateTimeProvider _datetimeProvider;
 
     public JwtTokenGenerator(IOptions<JwtSettings> jwtSettings, IDateTimeProvider datetimeProvider)
@@ -43,5 +43,20 @@ public sealed class JwtTokenGenerator : IJwtTokenGenerator
 
         return new JwtSecurityTokenHandler().WriteToken(securityToken);
 
+    }
+
+    public Dictionary<string, string> GetClaims(string token)
+    {
+        var handler = new JwtSecurityTokenHandler();
+        var tokenS = handler.ReadToken(token) as JwtSecurityToken;
+        var claims = tokenS?.Claims ?? throw new ArgumentNullException();
+
+        var claimsDictionary = new Dictionary<string, string>();
+        foreach (var claim in claims)
+        {
+            claimsDictionary.Add(claim.Type, claim.Value);
+        }
+
+        return claimsDictionary;
     }
 }

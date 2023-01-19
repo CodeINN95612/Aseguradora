@@ -1,6 +1,6 @@
 ﻿using Aseguradora.Auth.Data;
-using Aseguradora.Auth.Data.Entities;
 using Aseguradora.Domain.Abstractions.Repositories;
+using Aseguradora.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Aseguradora.Infrastructure.Repositories;
@@ -8,6 +8,11 @@ namespace Aseguradora.Infrastructure.Repositories;
 public class MonedaRepository : IMonedaRepository
 {
     private AseguradoraDBContext _db;
+
+    public MonedaRepository(AseguradoraDBContext db)
+    {
+        this._db = db;
+    }
 
     public Task<List<Moneda>> GetAll()
     {
@@ -19,7 +24,7 @@ public class MonedaRepository : IMonedaRepository
         return _db.ListaMonedas.FirstOrDefaultAsync(m => m.Id == id);
     }
 
-    public async Task<int> SaveMoneda(Moneda moneda)
+    public async Task<int> Save(Moneda moneda)
     {
         var state = moneda.Id == 0 ? EntityState.Added : EntityState.Modified;
         _db.Entry(moneda).State = state;

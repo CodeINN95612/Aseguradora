@@ -3,6 +3,6 @@
 public record AuthenticatedUser(
     string Usuario,
     string JwtToken,
-    string CodigoRol,
-    string CodigoMoneda
+    int IdRol,
+    int IdMoneda
 );

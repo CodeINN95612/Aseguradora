@@ -1,8 +1,8 @@
 ﻿using Aseguradora.Auth.Data;
-using Aseguradora.Auth.Services;
 using Aseguradora.Domain.Abstractions.Common;
 using Aseguradora.Domain.Abstractions.Repositories;
 using Aseguradora.Domain.Settings;
+using Aseguradora.Infrastructure.Common;
 using Aseguradora.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -64,6 +64,9 @@ public static class DependencyInjectionExt
     {
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         services.AddScoped<IMonedaRepository, MonedaRepository>();
+        services.AddScoped<IRolRepository, RolRepository>();
+        services.AddScoped<IEmpresaRepository, EmpresaRepository>();
+        services.AddScoped<IAplicacionRepository, AplicacionRepository>();
 
         return services;
     }

@@ -14,12 +14,17 @@ public class UsuarioRepository : IUsuarioRepository
         _db = db;
     }
 
+    public Task<List<Usuario>> GetAll()
+    {
+        return _db.ListaUsuarios.ToListAsync();
+    }
+
     public Task<Usuario?> GetByUsername(string username)
     {
         return _db.ListaUsuarios.FirstOrDefaultAsync(u => u.UsuarioCampo == username);
     }
 
-    public async Task<int> SaveUser(Usuario usuario)
+    public async Task<int> Save(Usuario usuario)
     {
         var state = usuario.Id == 0 ? EntityState.Added : EntityState.Modified;
         _db.Entry(usuario).State = state;
