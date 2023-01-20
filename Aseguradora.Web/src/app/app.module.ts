@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
+import { TransporteComponent } from './transporte/transporte.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -19,7 +20,8 @@ export function tokenGetter() {
     AppComponent,
     HomeComponent,
     LoginComponent,
-    NavComponent
+    NavComponent,
+    TransporteComponent
   ],
   imports: [
     BrowserModule,
