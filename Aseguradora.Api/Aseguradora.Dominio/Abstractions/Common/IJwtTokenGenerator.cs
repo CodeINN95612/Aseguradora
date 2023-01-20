@@ -1,4 +1,4 @@
-using Aseguradora.Auth.Data.Entities;
+using Aseguradora.Domain.Entities;
 
 namespace Aseguradora.Domain.Abstractions.Common;
 

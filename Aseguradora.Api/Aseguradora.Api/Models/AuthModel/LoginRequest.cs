@@ -1,7 +1,7 @@
 ﻿namespace Aseguradora.Api.Models.AuthModel;
 
 public record LoginRequest(
-    string Usuario,
+    string UsuarioEmail,
     string Clave,
     int IdMoneda
 );

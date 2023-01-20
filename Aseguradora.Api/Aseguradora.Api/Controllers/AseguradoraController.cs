@@ -10,14 +10,8 @@ namespace Aseguradora.Api.Controllers;
 [Authorize]
 public class AseguradoraController : ControllerBase
 {
-    protected string? CurrentUser { get; } = null;
-
-    protected IJwtTokenGenerator _jwt;
-
-    public AseguradoraController(IJwtTokenGenerator jwt)
+    public AseguradoraController()
     {
-        _jwt = jwt;
-
         //if (!Request.Headers.ContainsKey("Authorization"))
         //    return;
 

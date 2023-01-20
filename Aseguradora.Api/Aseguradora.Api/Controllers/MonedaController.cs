@@ -11,8 +11,7 @@ namespace Aseguradora.Api.Controllers;
 public class MonedaController : AseguradoraController
 {
     private IMonedaRepository _repo;
-    public MonedaController(IJwtTokenGenerator _jwt, IMonedaRepository repo)
-        : base(_jwt)
+    public MonedaController(IMonedaRepository repo)
     {
         _repo = repo;
     }

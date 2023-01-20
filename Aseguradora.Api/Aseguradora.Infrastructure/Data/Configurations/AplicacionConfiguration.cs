@@ -8,13 +8,15 @@ public class AplicacionConfiguration : IEntityTypeConfiguration<Aplicacion>
 {
     public void Configure(EntityTypeBuilder<Aplicacion> builder)
     {
-        builder.HasOne(a => a.EmpresaAsegurado)
-            .WithMany()
-            .HasForeignKey(a => a.IdEmpresaAsegurado);
+        builder.Property(a => a.Numero)
+            .HasComputedColumnSql("[Id]");
+        //builder.HasOne(a => a.EmpresaAsegurado)
+        //    .WithMany()
+        //    .HasForeignKey(a => a.IdEmpresaAsegurado);
 
-        builder.HasOne(l => l.EmpresaPagador)
-                .WithMany()
-                .HasForeignKey(l => l.IdEmpresaPagador)
-                .OnDelete(DeleteBehavior.Restrict);
+        //builder.HasOne(l => l.EmpresaPagador)
+        //        .WithMany()
+        //        .HasForeignKey(l => l.IdEmpresaPagador)
+        //        .OnDelete(DeleteBehavior.Restrict);
     }
 }

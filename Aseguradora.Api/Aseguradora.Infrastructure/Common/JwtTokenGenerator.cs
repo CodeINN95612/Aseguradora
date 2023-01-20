@@ -1,8 +1,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Aseguradora.Auth.Data.Entities;
 using Aseguradora.Domain.Abstractions.Common;
+using Aseguradora.Domain.Entities;
 using Aseguradora.Domain.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

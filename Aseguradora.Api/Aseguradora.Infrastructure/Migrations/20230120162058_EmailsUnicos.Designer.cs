@@ -4,6 +4,7 @@ using Aseguradora.Auth.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aseguradora.Infrastructure.Migrations
 {
     [DbContext(typeof(AseguradoraDBContext))]
-    partial class AseguradoraDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230120162058_EmailsUnicos")]
+    partial class EmailsUnicos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,6 +37,9 @@ namespace Aseguradora.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("EmpresaId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
@@ -47,25 +53,22 @@ namespace Aseguradora.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdEmpresa")
+                    b.Property<int>("IdEmpresaAsegurado")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdUsuario")
+                    b.Property<int>("IdEmpresaPagador")
                         .HasColumnType("int");
 
                     b.Property<int>("Numero")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("int")
-                        .HasComputedColumnSql("[Id]");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdEmpresa");
+                    b.HasIndex("EmpresaId");
 
-                    b.HasIndex("IdUsuario");
+                    b.HasIndex("IdEmpresaAsegurado");
 
-                    b.HasIndex("Numero")
-                        .IsUnique();
+                    b.HasIndex("IdEmpresaPagador");
 
                     b.ToTable("Aplicacion");
                 });
@@ -226,21 +229,25 @@ namespace Aseguradora.Infrastructure.Migrations
 
             modelBuilder.Entity("Aseguradora.Domain.Entities.Aplicacion", b =>
                 {
-                    b.HasOne("Aseguradora.Domain.Entities.Empresa", "Empresa")
+                    b.HasOne("Aseguradora.Domain.Entities.Empresa", null)
                         .WithMany("Aplicaciones")
-                        .HasForeignKey("IdEmpresa")
+                        .HasForeignKey("EmpresaId");
+
+                    b.HasOne("Aseguradora.Domain.Entities.Empresa", "EmpresaAsegurado")
+                        .WithMany()
+                        .HasForeignKey("IdEmpresaAsegurado")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Aseguradora.Domain.Entities.Usuario", "Usuario")
-                        .WithMany("Aplicaciones")
-                        .HasForeignKey("IdUsuario")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("Aseguradora.Domain.Entities.Empresa", "EmpresaPagador")
+                        .WithMany()
+                        .HasForeignKey("IdEmpresaPagador")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Empresa");
+                    b.Navigation("EmpresaAsegurado");
 
-                    b.Navigation("Usuario");
+                    b.Navigation("EmpresaPagador");
                 });
 
             modelBuilder.Entity("Aseguradora.Domain.Entities.Usuario", b =>
@@ -270,11 +277,6 @@ namespace Aseguradora.Infrastructure.Migrations
             modelBuilder.Entity("Aseguradora.Domain.Entities.Rol", b =>
                 {
                     b.Navigation("Usuarios");
-                });
-
-            modelBuilder.Entity("Aseguradora.Domain.Entities.Usuario", b =>
-                {
-                    b.Navigation("Aplicaciones");
                 });
 #pragma warning restore 612, 618
         }

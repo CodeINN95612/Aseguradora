@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Aseguradora.Infrastructure\Aseguradora.Infrastructure.csproj" />
-    <ProjectReference Include="..\Aseguradora.Shared\Aseguradora.Shared.csproj" />
   </ItemGroup>
 
 </Project>

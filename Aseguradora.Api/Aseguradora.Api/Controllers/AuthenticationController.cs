@@ -1,5 +1,5 @@
 ﻿using Aseguradora.Api.Models.AuthModel;
-using Aseguradora.Auth.Data.Entities;
+using Aseguradora.Api.Models.UsuarioModel;
 using Aseguradora.Domain.Abstractions.Common;
 using Aseguradora.Domain.Abstractions.Repositories;
 using Aseguradora.Domain.Entities;
@@ -14,20 +14,13 @@ public class AuthenticationController : AseguradoraController
 {
     private IUsuarioRepository _userRepo;
     private IMonedaRepository _monedaRepo;
+    private IJwtTokenGenerator _jwt;
 
-    public AuthenticationController(IUsuarioRepository userRepo, IMonedaRepository monedaRepo, IJwtTokenGenerator _jtw)
-        :base(_jtw)
+    public AuthenticationController(IUsuarioRepository userRepo, IMonedaRepository monedaRepo, IJwtTokenGenerator jwt)
     {
         _userRepo = userRepo;
         _monedaRepo = monedaRepo;
-    }
-
-    [HttpGet]
-    [AllowAnonymous]
-    public async Task<IActionResult> GetAll()
-    {
-        var users = await _userRepo.GetAll();
-        return Ok(users.Select(u => new GetUserResponse(u.UsuarioCampo)));
+        _jwt = jwt;
     }
 
     [HttpPost]
@@ -35,7 +28,7 @@ public class AuthenticationController : AseguradoraController
     [AllowAnonymous]
     public async Task<IActionResult> Login(LoginRequest login)
     {
-        if (await _userRepo.GetByUsername(login.Usuario) is not Usuario usuarioExistente)
+        if (await _userRepo.GetByUnique(login.UsuarioEmail) is not Usuario usuarioExistente)
         {
             return BadRequest("Invalid Credentials");
         }
@@ -52,35 +45,20 @@ public class AuthenticationController : AseguradoraController
 
         string token = _jwt.Generate(usuarioExistente);
 
-        return Ok(new AuthenticatedUser(
-            usuarioExistente.UsuarioCampo,
+        return Ok(new AuthenticatedUserResponse(
+            new(usuarioExistente.Id, 
+                usuarioExistente.UsuarioCampo, 
+                usuarioExistente.Email,
+                new(usuarioExistente.Rol.Id, usuarioExistente.Rol.Nombre),
+                usuarioExistente.Empresa is null ? null : new(
+                    usuarioExistente.Empresa.Id, 
+                    usuarioExistente.Empresa.Name,
+                    usuarioExistente.Empresa.Email,
+                    usuarioExistente.Empresa.RUC
+                )
+            ),
             token,
-            usuarioExistente.IdRol,
             monedaExistente.Id
         ));
     }
-
-    [HttpPut]
-    [Route("saveUser")]
-    public async Task<IActionResult> SaveUser(CreateUsuarioRequest usuario)
-    {
-        if (string.IsNullOrEmpty(usuario.Usuario) || string.IsNullOrEmpty(usuario.Clave))
-        {
-            return BadRequest("Usuario y contraseña obligatorios.");
-        }
-
-        if(await _userRepo.GetByUsername(usuario.Usuario) is Usuario)
-        {
-            return BadRequest("Already Exists");
-        }
-
-        return Ok(await _userRepo.Save(new()
-        {
-            UsuarioCampo = usuario.Usuario,
-            Clave = usuario.Clave,
-            IdRol = usuario.idRol,
-            IdEmpresa = usuario.idEmpresa
-        }));
-    }
-
 }
