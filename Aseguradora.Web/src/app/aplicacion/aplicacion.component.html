@@ -1,0 +1,23 @@
+<form>
+    <div>
+      <label for="desde">Desde:</label>
+      <input type="text" id="desde" [(ngModel)]="formData.desde" name="desde" required>
+    </div>
+    <div>
+      <label for="hasta">Hasta:</label>
+      <input type="text" id="hasta" [(ngModel)]="formData.hasta" name="hasta" required>
+    </div>
+    <div>
+      <label for="fechaCreacion">Fecha de creación:</label>
+      <input type="date" id="fechaCreacion" [(ngModel)]="formData.fechaCreacion" name="fechaCreacion" required>
+    </div>
+    <div>
+      <label for="fechaEmbarque">Fecha de embarque:</label>
+      <input type="date" id="fechaEmbarque" [(ngModel)]="formData.fechaEmbarque" name="fechaEmbarque">
+    </div>
+    <div>
+      <label for="fechaLlegada">Fecha de llegada:</label>
+      <input type="date" id="fechaLlegada" [(ngModel)]="formData.fechaLlegada" name="fechaLlegada">
+    </div>
+    <button (click)="submitForm()">Enviar</button>
+  </form>
