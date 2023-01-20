@@ -9,7 +9,11 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
+<<<<<<< HEAD
 import { AplicacionComponent } from './aplicacion/aplicacion.component';
+=======
+import { TransporteComponent } from './transporte/transporte.component';
+>>>>>>> a731e9ddfea7d1f700f60bf14c0d5546d8222450
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -21,7 +25,11 @@ export function tokenGetter() {
     HomeComponent,
     LoginComponent,
     NavComponent,
+<<<<<<< HEAD
     AplicacionComponent
+=======
+    TransporteComponent
+>>>>>>> a731e9ddfea7d1f700f60bf14c0d5546d8222450
   ],
   imports: [
     BrowserModule,
