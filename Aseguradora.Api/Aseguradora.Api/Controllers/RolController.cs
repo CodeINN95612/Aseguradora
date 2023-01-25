@@ -20,7 +20,7 @@ public class RolController : AseguradoraController
     public async Task<IActionResult> GetAll()
     {
         var roles = await _rolRepo.GetAll();
-        return Ok(roles.Select(r => new GetRolResponse(r.Id, r.Nombre)));
+        return Ok(roles.Select(r => new GetRolResponse(r.Id, r.Nombre, r.EsAdministrador, r.EsEjecutivo, r.EsTrabajador)));
     }
 
     [HttpGet("getById")]
@@ -31,7 +31,7 @@ public class RolController : AseguradoraController
             return NotFound("No existe el rol");
         }
 
-        return Ok(new GetRolResponse(rol.Id, rol.Nombre));
+        return Ok(new GetRolResponse(rol.Id, rol.Nombre, rol.EsAdministrador, rol.EsEjecutivo, rol.EsTrabajador));
     }
 
     [HttpPost("save")]

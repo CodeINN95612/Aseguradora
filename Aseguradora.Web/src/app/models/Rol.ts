@@ -1,4 +1,7 @@
 export type Rol = {
     id: number,
-    nombre: string
+    nombre: string,
+    esAdmin: boolean,
+    esEjecutivo: boolean,
+    esTrabajador: boolean
 };
