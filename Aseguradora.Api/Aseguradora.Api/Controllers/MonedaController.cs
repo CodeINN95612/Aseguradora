@@ -21,6 +21,6 @@ public class MonedaController : AseguradoraController
     public async Task<IActionResult> GetAll()
     {
         var monedas = await _repo.GetAll();
-        return Ok(monedas.Select(p => new MonedaGetAllResponse(p.Id, p.Codigo, p.Nombre)));
+        return Ok(monedas.Select(p => new GetMonedaResponse(p.Id, p.Codigo, p.Nombre)));
     }
 }

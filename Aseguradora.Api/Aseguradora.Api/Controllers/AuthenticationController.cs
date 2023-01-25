@@ -58,7 +58,7 @@ public class AuthenticationController : AseguradoraController
                 )
             ),
             token,
-            monedaExistente.Id
+            new(monedaExistente.Id, monedaExistente.Codigo, monedaExistente.Nombre)
         ));
     }
 }

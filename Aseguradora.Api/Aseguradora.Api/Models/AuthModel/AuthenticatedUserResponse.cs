@@ -1,9 +1,10 @@
-﻿using Aseguradora.Api.Models.UsuarioModel;
+﻿using Aseguradora.Api.Models.MonedaModel;
+using Aseguradora.Api.Models.UsuarioModel;
 
 namespace Aseguradora.Shared.Authentication;
 
 public record AuthenticatedUserResponse(
     GetUserResponse usuario,
     string JwtToken,
-    int IdMoneda
+    GetMonedaResponse moneda
 );
