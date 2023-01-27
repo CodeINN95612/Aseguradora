@@ -27,7 +27,7 @@ public class UsuarioController : AseguradoraController
             u.Id,
             u.UsuarioCampo,
             u.Email,
-            new(u.Rol.Id, u.Rol.Nombre),
+            new(u.Rol.Id, u.Rol.Nombre, u.Rol.EsAdministrador, u.Rol.EsEjecutivo, u.Rol.EsTrabajador),
             u.Empresa is null ? null : new(u.Empresa.Id, u.Empresa.Name, u.Empresa.Email, u.Empresa.RUC)
         )));
     }
@@ -44,7 +44,7 @@ public class UsuarioController : AseguradoraController
             usuario.Id,
             usuario.UsuarioCampo,
             usuario.Email,
-            new(usuario.Rol.Id, usuario.Rol.Nombre),
+            new(usuario.Rol.Id, usuario.Rol.Nombre, usuario.Rol.EsAdministrador, usuario.Rol.EsEjecutivo, usuario.Rol.EsTrabajador),
             usuario.Empresa is null ? null : new(usuario.Empresa.Id, usuario.Empresa.Name, usuario.Empresa.Email, usuario.Empresa.RUC)
         ));
     }

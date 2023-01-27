@@ -1,9 +1,15 @@
 ﻿namespace Aseguradora.Api.Models.AplicacionModel;
 
 public record SaveAplicacionRequest(
-    int Id,
     DateTime Fecha,
     string Desde,
     string Hasta,
+    string TipoTransporte,
+    string Perteneciente,
+    string Consignada,
+    string EmbarcadoPor,
     DateTime? FechaEmbargue,
-    DateTime? FechaLLegada);
+    DateTime? FechaLLegada,
+    string NotaPredio,
+    string OrdenCompra,
+    SaveAplicacionAduanaRequest Aduana);

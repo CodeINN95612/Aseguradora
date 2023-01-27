@@ -1,6 +1,6 @@
 export type Empresa = {
     id: number,
-    nombre: string,
+    nombreEmpresa: string,
     email: string,
     ruc: string,
 }

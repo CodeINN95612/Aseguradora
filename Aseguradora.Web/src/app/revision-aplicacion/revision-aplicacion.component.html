@@ -1,0 +1,137 @@
+<h2>Detalle de Poliza</h2>
+<form>
+    <div class="form-group row">
+        <label for="numero" class="col-sm-2 col-form-label">Numero</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="numero" [(ngModel)]="polizaFull.numero" name="numero" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="fecha" [ngModel]="polizaFull.fecha | date" name="fecha"
+                disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="usuario" class="col-sm-2 col-form-label">Usuario</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="usuario" [(ngModel)]="polizaFull.usuario.username"
+                name="usuario" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="empresa" class="col-sm-2 col-form-label">Empresa</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="empresa" [(ngModel)]="polizaFull.empresa.nombreEmpresa"
+                name="empresa" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="desde" class="col-sm-2 col-form-label">Desde</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="desde" [(ngModel)]="polizaFull.desde" name="desde" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="hasta" class="col-sm-2 col-form-label">Hasta</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="hasta" [(ngModel)]="polizaFull.hasta" name="hasta" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="tipoTransporte" class="col-sm-2 col-form-label">Tipo de Transporte</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="tipoTransporte" [(ngModel)]="polizaFull.tipoTransporte"
+                name="tipoTransporte" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="perteneciente" class="col-sm-2 col-form-label">Perteneciente</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="empresa" [(ngModel)]="polizaFull.empresa.nombreEmpresa"
+                name="empresa" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="desde" class="col-sm-2 col-form-label">Desde</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="desde" [(ngModel)]="polizaFull.desde" name="desde" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="hasta" class="col-sm-2 col-form-label">Hasta</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="hasta" [(ngModel)]="polizaFull.hasta" name="hasta" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="tipoTransporte" class="col-sm-2 col-form-label">Tipo de Transporte</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="tipoTransporte" [(ngModel)]="polizaFull.tipoTransporte"
+                name="tipoTransporte" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="perteneciente" class="col-sm-2 col-form-label">Perteneciente</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="perteneciente" [(ngModel)]="polizaFull.perteneciente"
+                name="perteneciente" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="consignada" class="col-sm-2 col-form-label">Consignada</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="consignada" [(ngModel)]="polizaFull.consignada"
+                name="consignada" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="embarcadoPor" class="col-sm-2 col-form-label">Embarcado Por</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="embarcadoPor" [(ngModel)]="polizaFull.embarcadoPor"
+                name="embarcadoPor" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="fechaEmbarque" class="col-sm-2 col-form-label">Fecha de Embarque</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="fechaEmbarque" [(ngModel)]="polizaFull.fechaEmbarque"
+                name="fechaEmbarque" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="fechaLLegada" class="col-sm-2 col-form-label">Fecha de llegada</label>
+
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="fechaLLegada" [(ngModel)]="polizaFull.fechaLLegada"
+                name="fechaLLegada" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="notaPredio" class="col-sm-2 col-form-label">Nota de predio</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="notaPredio" [(ngModel)]="polizaFull.notaPredio"
+                name="notaPredio" disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="aduana" class="col-sm-2 col-form-label">Item Aduana</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="aduana" [(ngModel)]="polizaFull.aduana.item" name="aduana"
+                disabled>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="estado" class="col-sm-2 col-form-label">Estado</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="estado" [(ngModel)]="polizaFull.estado" name="estado" disabled>
+        </div>
+    </div>
+    <div class="form-group row my-3">
+        <div class="col-sm-10">
+            <button type="button" class="btn btn-success" (click)="aprobarPoliza()">Aprobar</button>
+            <button type="button" class="btn btn-danger" (click)="negarPoliza()">Negar</button>
+        </div>
+    </div>
+</form>

@@ -28,12 +28,13 @@ public class AplicacionRepository : IAplicacionRepository
         return aplicacions;
     }
 
-    public Task<List<Aplicacion>> GetAll(int idEmpresa)
+    public Task<List<Aplicacion>> GetAllIngresadas()
     {
         return _db.ListaAplicaciones
-            .Where(a => a.IdEmpresa == idEmpresa)
+            .Where(a => a.Estado == null)
             .Include(a => a.Empresa)
             .Include(a => a.Usuario)
+            .Include(a => a.Aduana)
             .ToListAsync();
     }
 
@@ -42,14 +43,22 @@ public class AplicacionRepository : IAplicacionRepository
         return _db.ListaAplicaciones
             .Include(a => a.Empresa)
             .Include(a => a.Usuario)
+            .Include(a => a.Aduana)
             .FirstOrDefaultAsync(m => m.Id == id);
     }
 
-    public async Task<int> Save(Aplicacion Aplicacion)
+    public async Task<int> Save(Aplicacion aplicacion)
     {
-        var state = Aplicacion.Id == 0 ? EntityState.Added : EntityState.Modified;
-        _db.Entry(Aplicacion).State = state;
+        var state = aplicacion.Id == 0 ? EntityState.Added : EntityState.Modified;
+        _db.Entry(aplicacion).State = state;
+
+        if(state ==EntityState.Added)
+        {
+            aplicacion.Aduana.Aplicacion = aplicacion;
+            _db.Entry(aplicacion.Aduana).State = state;
+        }
+
         await _db.SaveChangesAsync();
-        return Aplicacion.Id;
+        return aplicacion.Id;
     }
 }

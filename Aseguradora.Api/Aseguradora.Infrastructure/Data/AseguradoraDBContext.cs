@@ -15,6 +15,7 @@ public class AseguradoraDBContext : DbContext
     public virtual DbSet<Usuario> ListaUsuarios { get; set; } = null!;
     public virtual DbSet<Moneda> ListaMonedas { get; set; } = null!;
     public virtual DbSet<Aplicacion> ListaAplicaciones { get; set; } = null!;
+    public virtual DbSet<AplicacionAduana> ListaAplicacionesAduanas { get; set; } = null!;
     public virtual DbSet<Empresa> ListaEmpresas { get; set; } = null!;
     public virtual DbSet<Rol> ListaRoles { get; set; } = null!;
 
@@ -23,6 +24,7 @@ public class AseguradoraDBContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.ApplyConfiguration(new AplicacionConfiguration());
+        modelBuilder.ApplyConfiguration(new AplicacionAduanaConfiguration());
 
         modelBuilder.Entity<Rol>().HasData(new Rol
         {

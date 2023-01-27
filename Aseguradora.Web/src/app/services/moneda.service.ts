@@ -9,10 +9,11 @@ import { Moneda } from '../models/Moneda';
 })
 export class MonedaService {
 
+  uri = 'http://insertnickname-001-site1.btempurl.com'
   constructor(private http: HttpClient) { }
 
   getMonedas(): Observable<Moneda[]> {
-    return this.http.get<Moneda[]>('http://insertnickname-001-site1.btempurl.com/api/Moneda');
+    return this.http.get<Moneda[]>(this.uri + '/api/Moneda');
   }
 }
 

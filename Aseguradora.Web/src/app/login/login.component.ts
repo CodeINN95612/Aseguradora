@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { MonedaService } from '../services/moneda.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',

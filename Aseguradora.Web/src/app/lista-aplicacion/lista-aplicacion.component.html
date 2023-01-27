@@ -1,0 +1,39 @@
+<h1>Lista de Aplicaciones</h1>
+<div class="form-group my-3">
+    <label for="searchTerm">Buscar: </label>
+    <input type="text" id="searchTerm" [(ngModel)]="searchTerm" (ngModelChange)="filterPolizas()">
+</div>
+<div class="container">
+    <div *ngIf="isLoading">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!isLoading">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Empresa</th>
+                    <th scope="col">Desde</th>
+                    <th scope="col">Hasta</th>
+                    <th scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let poliza of polizasFiltradas" (click)="verDetalles(poliza)">
+                    <td scope="row">{{ poliza.numero }}</td>
+                    <td>{{ poliza.fecha | date}}</td>
+                    <td>{{ poliza.usuario.username }}</td>
+                    <td>{{ poliza.empresa.nombreEmpresa }}</td>
+                    <td>{{ poliza.desde }}</td>
+                    <td>{{ poliza.hasta }}</td>
+                    <td>{{ poliza.estado }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

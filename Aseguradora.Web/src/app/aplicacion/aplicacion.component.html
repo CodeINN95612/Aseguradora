@@ -1,23 +1,160 @@
-<!-- <form>
-    <div>
-      <label for="desde">Desde:</label>
-      <input type="text" id="desde" [(ngModel)]="formData.desde" name="desde" required>
+<h2>Crear Póliza</h2>
+<form (submit)="onSubmit()">
+  <div class="form-group">
+    <h3>Datos Generales</h3>
+    <div class="form-group row">
+      <div class="form-group row">
+        <label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" id="fecha" [(ngModel)]="aplicacionSave.fecha" name="fecha">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="desde" class="col-sm-2 col-form-label">Desde</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="desde" [(ngModel)]="aplicacionSave.desde" name="desde">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="hasta" class="col-sm-2 col-form-label">Hasta</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="hasta" [(ngModel)]="aplicacionSave.hasta" name="hasta">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="tipoTransporte" class="col-sm-2 col-form-label">Tipo de Transporte</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="tipoTransporte" [(ngModel)]="aplicacionSave.tipoTransporte"
+            name="tipoTransporte">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="perteneciente" class="col-sm-2 col-form-label">Perteneciente</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="perteneciente" [(ngModel)]="aplicacionSave.perteneciente"
+            name="perteneciente">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="consignada" class="col-sm-2 col-form-label">Consignada</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="consignada" [(ngModel)]="aplicacionSave.consignada"
+            name="consignada">
+        </div>
+      </div>
     </div>
-    <div>
-      <label for="hasta">Hasta:</label>
-      <input type="text" id="hasta" [(ngModel)]="formData.hasta" name="hasta" required>
+    <div class="form-group row">
+      <label for="embarcadoPor" class="col-sm-2 col-form-label">Embarcado Por</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="embarcadoPor" [(ngModel)]="aplicacionSave.embarcadoPor"
+          name="embarcadoPor">
+      </div>
     </div>
-    <div>
-      <label for="fechaCreacion">Fecha de creación:</label>
-      <input type="date" id="fechaCreacion" [(ngModel)]="formData.fechaCreacion" name="fechaCreacion" required>
+    <div class="form-group row">
+      <label for="fechaEmbargue" class="col-sm-2 col-form-label">Fecha Embargue</label>
+      <div class="col-sm-10">
+        <input type="date" class="form-control" id="fechaEmbargue" [(ngModel)]="aplicacionSave.fechaEmbargue"
+          name="fechaEmbargue">
+      </div>
     </div>
-    <div>
-      <label for="fechaEmbarque">Fecha de embarque:</label>
-      <input type="date" id="fechaEmbarque" [(ngModel)]="formData.fechaEmbarque" name="fechaEmbarque">
+    <div class="form-group row">
+      <label for="fechaLLegada" class="col-sm-2 col-form-label">Fecha Llegada</label>
+      <div class="col-sm-10">
+        <input type="date" class="form-control" id="fechaLLegada" [(ngModel)]="aplicacionSave.fechaLLegada"
+          name="fechaLLegada">
+      </div>
     </div>
-    <div>
-      <label for="fechaLlegada">Fecha de llegada:</label>
-      <input type="date" id="fechaLlegada" [(ngModel)]="formData.fechaLlegada" name="fechaLlegada">
+    <div class="form-group row">
+      <label for="notaPredio" class="col-sm-2 col-form-label">Nota Predio</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="notaPredio" [(ngModel)]="aplicacionSave.notaPredio"
+          name="notaPredio">
+      </div>
     </div>
-    <button (click)="submitForm()">Enviar</button>
-  </form> -->
+    <div class="form-group row">
+      <label for="ordenCompra" class="col-sm-2 col-form-label">Orden Compra</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="ordenCompra" [(ngModel)]="aplicacionSave.ordenCompra"
+          name="ordenCompra">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <h3>Datos de Aduana</h3>
+    <div class="form-group row">
+      <label for="item" class="col-sm-2 col-form-label">Item</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="item" [(ngModel)]="aplicacionSave.aduana.item" name="item">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="marca" class="col-sm-2 col-form-label">Marca</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="marca" [(ngModel)]="aplicacionSave.aduana.marca" name="marca">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="numero" class="col-sm-2 col-form-label">Numero</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="numero" [(ngModel)]="aplicacionSave.aduana.numero" name="numero">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="pesoBruto" class="col-sm-2 col-form-label">Peso Bruto</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="pesoBruto" [(ngModel)]="aplicacionSave.aduana.pesoBruto"
+          name="pesoBruto">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="bultos" class="col-sm-2 col-form-label">Bultos</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" id="bultos" [(ngModel)]="aplicacionSave.aduana.bultos" name="bultos">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="montoTotal" class="col-sm-2 col-form-label">Monto Total</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="montoTotal" [(ngModel)]="aplicacionSave.aduana.montoTotal"
+          name="montoTotal">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="porcentajeOtrosGastos" class="col-sm-2 col-form-label">Porcentaje Otros Gastos</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="porcentajeOtrosGastos"
+          [(ngModel)]="aplicacionSave.aduana.porcentajeOtrosGastos" name="porcentajeOtrosGastos">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="sumaAseguradora" class="col-sm-2 col-form-label">Suma Aseguradora</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="sumaAseguradora" [(ngModel)]="aplicacionSave.aduana.sumaAseguradora"
+          name="sumaAseguradora">
+      </div>
+
+    </div>
+    <div class="form-group row">
+      <label for="valorPrima" class="col-sm-2 col-form-label">Valor Prima</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="valorPrima" [(ngModel)]="aplicacionSave.aduana.valorPrima"
+          name="valorPrima">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="descripcionContenido" class="col-sm-2 col-form-label">Descripcion Contenido</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="descripcionContenido"
+          [(ngModel)]="aplicacionSave.aduana.descripcionContenido" name="descripcionContenido">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="observaciones" class="col-sm-2 col-form-label">Observaciones</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="observaciones" [(ngModel)]="aplicacionSave.aduana.observaciones"
+          name="observaciones">
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Ingresar</button>
+</form>

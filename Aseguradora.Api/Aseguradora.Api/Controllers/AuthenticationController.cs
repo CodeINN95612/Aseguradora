@@ -49,13 +49,16 @@ public class AuthenticationController : AseguradoraController
             new(usuarioExistente.Id, 
                 usuarioExistente.UsuarioCampo, 
                 usuarioExistente.Email,
-                new(usuarioExistente.Rol.Id, usuarioExistente.Rol.Nombre),
+                new(usuarioExistente.Rol.Id, 
+                    usuarioExistente.Rol.Nombre,
+                    usuarioExistente.Rol.EsAdministrador,
+                    usuarioExistente.Rol.EsEjecutivo,
+                    usuarioExistente.Rol.EsTrabajador),
                 usuarioExistente.Empresa is null ? null : new(
                     usuarioExistente.Empresa.Id, 
                     usuarioExistente.Empresa.Name,
                     usuarioExistente.Empresa.Email,
-                    usuarioExistente.Empresa.RUC
-                )
+                    usuarioExistente.Empresa.RUC)
             ),
             token,
             new(monedaExistente.Id, monedaExistente.Codigo, monedaExistente.Nombre)

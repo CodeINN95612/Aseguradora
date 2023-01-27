@@ -11,6 +11,10 @@ import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
 import { AplicacionComponent } from './aplicacion/aplicacion.component';
 import { TransporteComponent } from './transporte/transporte.component';
+import { ListaAplicacionComponent } from './lista-aplicacion/lista-aplicacion.component';
+import { RevisionAplicacionComponent } from './revision-aplicacion/revision-aplicacion.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -23,7 +27,9 @@ export function tokenGetter() {
     LoginComponent,
     NavComponent,
     AplicacionComponent,
-    TransporteComponent
+    TransporteComponent,
+    ListaAplicacionComponent,
+    RevisionAplicacionComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +37,8 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

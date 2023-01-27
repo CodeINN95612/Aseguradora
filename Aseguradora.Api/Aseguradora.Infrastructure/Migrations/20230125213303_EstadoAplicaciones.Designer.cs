@@ -4,6 +4,7 @@ using Aseguradora.Auth.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aseguradora.Infrastructure.Migrations
 {
     [DbContext(typeof(AseguradoraDBContext))]
-    partial class AseguradoraDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230125213303_EstadoAplicaciones")]
+    partial class EstadoAplicaciones
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,15 +33,7 @@ namespace Aseguradora.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Consignada")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Desde")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmbarcadoPor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -64,26 +59,10 @@ namespace Aseguradora.Infrastructure.Migrations
                     b.Property<int>("IdUsuario")
                         .HasColumnType("int");
 
-                    b.Property<string>("NotaPredio")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Numero")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("int")
                         .HasComputedColumnSql("[Id]");
-
-                    b.Property<string>("OrdenCompra")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Perteneciente")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TipoTransporte")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -95,59 +74,6 @@ namespace Aseguradora.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Aplicacion");
-                });
-
-            modelBuilder.Entity("Aseguradora.Domain.Entities.AplicacionAduana", b =>
-                {
-                    b.Property<int>("IdAplicacion")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Bultos")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DescripcionContenido")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Item")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Marca")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("MontoTotal")
-                        .HasPrecision(18, 5)
-                        .HasColumnType("decimal(18,5)");
-
-                    b.Property<string>("Numero")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Observaciones")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("PesoBruto")
-                        .HasPrecision(18, 5)
-                        .HasColumnType("decimal(18,5)");
-
-                    b.Property<decimal>("PorcentajeOtrosGastos")
-                        .HasPrecision(18, 5)
-                        .HasColumnType("decimal(18,5)");
-
-                    b.Property<decimal>("SumaAseguradora")
-                        .HasPrecision(18, 5)
-                        .HasColumnType("decimal(18,5)");
-
-                    b.Property<decimal>("ValorPrima")
-                        .HasPrecision(18, 5)
-                        .HasColumnType("decimal(18,5)");
-
-                    b.HasKey("IdAplicacion");
-
-                    b.ToTable("ListaAplicacionesAduanas");
                 });
 
             modelBuilder.Entity("Aseguradora.Domain.Entities.Empresa", b =>
@@ -323,17 +249,6 @@ namespace Aseguradora.Infrastructure.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("Aseguradora.Domain.Entities.AplicacionAduana", b =>
-                {
-                    b.HasOne("Aseguradora.Domain.Entities.Aplicacion", "Aplicacion")
-                        .WithOne("Aduana")
-                        .HasForeignKey("Aseguradora.Domain.Entities.AplicacionAduana", "IdAplicacion")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Aplicacion");
-                });
-
             modelBuilder.Entity("Aseguradora.Domain.Entities.Usuario", b =>
                 {
                     b.HasOne("Aseguradora.Domain.Entities.Empresa", "Empresa")
@@ -349,12 +264,6 @@ namespace Aseguradora.Infrastructure.Migrations
                     b.Navigation("Empresa");
 
                     b.Navigation("Rol");
-                });
-
-            modelBuilder.Entity("Aseguradora.Domain.Entities.Aplicacion", b =>
-                {
-                    b.Navigation("Aduana")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Aseguradora.Domain.Entities.Empresa", b =>
