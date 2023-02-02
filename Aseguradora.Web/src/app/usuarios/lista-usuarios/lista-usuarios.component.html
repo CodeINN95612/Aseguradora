@@ -1,0 +1,25 @@
+<div class="container">
+    <h1 class="text-center my-5">Lista de Usuarios</h1>
+    <div class="d-flex justify-content-end mb-3">
+        <button type="button" class="btn btn-primary" (click)="goToDetalle('')">Nuevo</button>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre de Usuario</th>
+                <th>Email</th>
+                <th>Empresa</th>
+                <th>Rol</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- aqui se usara un ngFor para mostrar cada usuario -->
+            <tr *ngFor="let usuario of usuarios" (click)="goToDetalle(usuario.username)">
+                <td>{{usuario.username}}</td>
+                <td>{{usuario.email}}</td>
+                <td>{{usuario.empresa?.nombreEmpresa ?? 'N/A'}}</td>
+                <td>{{usuario.rol.nombre}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

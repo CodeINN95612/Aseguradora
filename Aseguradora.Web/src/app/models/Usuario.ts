@@ -8,3 +8,11 @@ export type Usuario = {
     empresa?: Empresa,
     rol: Rol
 }
+
+export type UsuarioDetalle = {
+    username: string,
+    email: string,
+    clave: string,
+    idRol: number,
+    idEmpresa: number | null
+}

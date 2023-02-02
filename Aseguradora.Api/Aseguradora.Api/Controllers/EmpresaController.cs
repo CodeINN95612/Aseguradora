@@ -37,7 +37,7 @@ public class EmpresaController : AseguradoraController
     [Route("save")]
     public async Task<IActionResult> Save(SaveEmpresaRequest request)
     {
-        if(string.IsNullOrEmpty(request.Name) ||
+        if(string.IsNullOrEmpty(request.NombreEmpresa) ||
             string.IsNullOrEmpty(request.Email) ||
             string.IsNullOrEmpty(request.RUC))
         {
@@ -47,7 +47,7 @@ public class EmpresaController : AseguradoraController
         return Ok(await _empresaRepo.Save(new Empresa
         {
             Id = request.Id,
-            Name = request.Name,
+            Name = request.NombreEmpresa,
             Email = request.Email,
             RUC = request.RUC
         }));

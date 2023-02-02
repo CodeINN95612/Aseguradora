@@ -28,6 +28,15 @@ public class AplicacionRepository : IAplicacionRepository
         return aplicacions;
     }
 
+    public Task<List<Aplicacion>> GetAll()
+    {
+        return _db.ListaAplicaciones
+            .Include(a => a.Empresa)
+            .Include(a => a.Usuario)
+            .Include(a => a.Aduana)
+            .ToListAsync();
+    }
+
     public Task<List<Aplicacion>> GetAllIngresadas()
     {
         return _db.ListaAplicaciones

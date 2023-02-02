@@ -1,0 +1,1 @@
+export const URI: string = 'https://localhost:7150/'

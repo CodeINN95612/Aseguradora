@@ -1,0 +1,22 @@
+<h1 class="text-center my-5">Lista de Empresas</h1>
+<div class="d-flex justify-content-end mb-3">
+    <button type="button" class="btn btn-primary" (click)="goToDetalle(0)">Nuevo</button>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>RUC</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let empresa of empresas" (click)="goToDetalle(empresa.id)">
+            <td>{{empresa.id}}</td>
+            <td>{{empresa.nombreEmpresa}}</td>
+            <td>{{empresa.email}}</td>
+            <td>{{empresa.ruc}}</td>
+        </tr>
+    </tbody>
+</table>

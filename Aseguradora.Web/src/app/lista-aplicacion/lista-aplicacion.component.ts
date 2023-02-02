@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Aplicacion } from '../models/Aplicacion';
 import { AplicacionService } from '../services/aplicacion.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-lista-aplicacion',
@@ -14,10 +15,11 @@ export class ListaAplicacionComponent {
   isLoading: boolean = true;
   searchTerm: string = '';
 
-  constructor(private aplicacionService: AplicacionService, private router: Router) { }
+  constructor(private aplicacionService: AplicacionService, private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.getPolizas();
+
   }
 
   getPolizas(): void {

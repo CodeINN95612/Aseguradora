@@ -1,26 +1,29 @@
 <!-- login.component.html -->
-<form (submit)="onSubmit()" class="bg-light p-5">
-    <div *ngIf="isLoading" class="text-center">
-        <div class="spinner-border" role="status">
+<div class="d-flex justify-content-center">
+
+    <form (submit)="onSubmit()" class="bg-light p-5 mx-auto">
+        <div *ngIf="isLoading" class="text-center">
+            <div class="spinner-border" role="status">
+            </div>
         </div>
-    </div>
-    <div *ngIf="!isLoading">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input [(ngModel)]="username" name="username" type="text" class="form-control" id="username"
-                placeholder="Enter username">
+        <div *ngIf="!isLoading">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input [(ngModel)]="username" name="username" type="text" class="form-control" id="username"
+                    placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input [(ngModel)]="password" name="password" type="password" class="form-control" id="password"
+                    placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="moneda">Moneda</label>
+                <select [(ngModel)]="moneda" name="moneda" class="form-control" id="moneda">
+                    <option *ngFor="let m of monedas" [value]="m.id">{{ m.codigo }} - {{ m.nombre }}</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input [(ngModel)]="password" name="password" type="password" class="form-control" id="password"
-                placeholder="Password">
-        </div>
-        <div class="form-group">
-            <label for="moneda">Moneda</label>
-            <select [(ngModel)]="moneda" name="moneda" class="form-control" id="moneda">
-                <option *ngFor="let m of monedas" [value]="m.id">{{ m.codigo }} - {{ m.nombre }}</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-    </div>
-</form>
+    </form>
+</div>

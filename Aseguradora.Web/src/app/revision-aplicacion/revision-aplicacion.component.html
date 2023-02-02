@@ -128,7 +128,7 @@
             <input type="text" class="form-control" id="estado" [(ngModel)]="polizaFull.estado" name="estado" disabled>
         </div>
     </div>
-    <div class="form-group row my-3">
+    <div class="form-group row my-3" *ngIf="muestraBotones">
         <div class="col-sm-10">
             <button type="button" class="btn btn-success" (click)="aprobarPoliza()">Aprobar</button>
             <button type="button" class="btn btn-danger" (click)="negarPoliza()">Negar</button>

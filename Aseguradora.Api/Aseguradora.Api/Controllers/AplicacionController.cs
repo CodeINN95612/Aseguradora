@@ -24,6 +24,45 @@ public class AplicacionController : AseguradoraController
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
+        var aplicaciones = await _aplicacionRepo.GetAll();
+
+        return Ok(aplicaciones
+            .Select(a => new GetAplicacionResponse(
+                a.Id,
+                a.Numero,
+                a.Fecha,
+                new(a.Usuario.Id, a.Usuario.UsuarioCampo, a.Usuario.Email),
+                new(a.Empresa.Id, a.Empresa.Name, a.Empresa.Email, a.Empresa.RUC),
+                a.Desde,
+                a.Hasta,
+                a.FechaEmbarque,
+                a.FechaLLegada,
+                a.Estado is null ? "Ingresada" : ((bool)a.Estado ? "Aprobada" : "Negada")
+        )));
+    }
+
+    [HttpGet("all")]
+    public async Task<IActionResult> GetAllByEmpresa(int idEmpresa)
+    {
+        var aplicaciones = await _aplicacionRepo.GetAll();
+
+        return Ok(aplicaciones.Where(a => a.IdEmpresa == idEmpresa).Select(a => new GetAplicacionResponse(
+            a.Id,
+            a.Numero,
+            a.Fecha,
+            new(a.Usuario.Id, a.Usuario.UsuarioCampo, a.Usuario.Email),
+            new(a.Empresa.Id, a.Empresa.Name, a.Empresa.Email, a.Empresa.RUC),
+            a.Desde,
+            a.Hasta,
+            a.FechaEmbarque,
+            a.FechaLLegada,
+            a.Estado is null ? "Ingresada" : ((bool)a.Estado ? "Aprobada" : "Negada")))
+        );
+    }
+
+    [HttpGet("ingresadas")]
+    public async Task<IActionResult> GetAllIngresadas()
+    {
         var aplicaciones = await _aplicacionRepo.GetAllIngresadas();
 
         return Ok(aplicaciones

@@ -63,22 +63,31 @@ public class UsuarioController : AseguradoraController
             return BadRequest("Campo IdRol no es valido.");
         }
 
-        var empresa = await _empresaRepository.GetById(request.IdEmpresa);
-        if(request.IdEmpresa is not 0 && empresa is null)
+        Empresa? empresa = await _empresaRepository.GetById(request.IdEmpresa.GetValueOrDefault());
+        if(request.IdEmpresa.GetValueOrDefault() is not 0 && empresa is null)
         {
             return BadRequest("Campo IdEmpresa no es valido.");
         }
 
-        return Ok(await _usuarioRepo.Save(new()
+        var usuarioExistente = await _usuarioRepo.GetByUsername(request.Username);
+
+        if(usuarioExistente is null)
         {
-            Id = request.Id,
-            UsuarioCampo = request.Username,
-            Email = request.Email,
-            Clave = request.Clave,
-            Empresa = empresa,
-            IdEmpresa = empresa?.Id ?? 0,
-            Rol = rol,
-            IdRol = rol.Id
-        }));
+            return Ok(await _usuarioRepo.Save(new()
+            {
+                Id = usuarioExistente?.Id ?? 0,
+                UsuarioCampo = request.Username,
+                Email = request.Email,
+                Clave = request.Clave,
+                Empresa = empresa,
+                IdEmpresa = empresa?.Id ?? 0,
+                Rol = rol,
+                IdRol = rol.Id
+            }));
+        }
+
+        usuarioExistente.Empresa = empresa;
+        usuarioExistente.IdEmpresa = empresa?.Id;
+        return Ok(await _usuarioRepo.Save(usuarioExistente));
     }
 }

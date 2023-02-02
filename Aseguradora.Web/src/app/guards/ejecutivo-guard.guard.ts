@@ -9,7 +9,7 @@ export class EjecutivoAdminGuard implements CanActivate {
   constructor(private authService: AuthService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const rol = this.authService.getUserData().usuario.rol;
+    const rol = this.authService.getUserData()?.usuario?.rol;
 
     if (!rol) {
       return false;

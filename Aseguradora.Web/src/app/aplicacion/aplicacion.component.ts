@@ -3,6 +3,7 @@ import { AplicacionSave } from '../models/Aplicacion';
 import { AplicacionService } from '../services/aplicacion.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-aplicacion',
@@ -12,8 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AplicacionComponent {
   aplicacionSave: AplicacionSave;
 
-  constructor(private aplicacionService: AplicacionService,
-    private router: Router, private toastr: ToastrService) {
+  constructor(private aplicacionService: AplicacionService, private router: Router) {
     this.aplicacionSave = {
       desde: '',
       hasta: '',
@@ -46,9 +46,8 @@ export class AplicacionComponent {
   onSubmit() {
     this.aplicacionService.ingresar(this.aplicacionSave).
       subscribe(_ => {
-        this.toastr.show("Guardado!");
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
-          this.router.navigate([this.router.url]));
+        // this.toastr.show("Guardado!");
+        this.router.navigate(['aplicaciones']);
       });
   }
 }

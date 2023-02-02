@@ -14,7 +14,11 @@ import { TransporteComponent } from './transporte/transporte.component';
 import { ListaAplicacionComponent } from './lista-aplicacion/lista-aplicacion.component';
 import { RevisionAplicacionComponent } from './revision-aplicacion/revision-aplicacion.component';
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
+import { DetalleUsuarioComponent } from './usuarios/detalle-usuario/detalle-usuario.component';
+import { ListaEmpresasComponent } from './empresa/lista-empresas/lista-empresas.component';
+import { DetalleEmpresaComponent } from './empresa/detalle-empresa/detalle-empresa.component'
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -29,7 +33,11 @@ export function tokenGetter() {
     AplicacionComponent,
     TransporteComponent,
     ListaAplicacionComponent,
-    RevisionAplicacionComponent
+    RevisionAplicacionComponent,
+    ListaUsuariosComponent,
+    DetalleUsuarioComponent,
+    ListaEmpresasComponent,
+    DetalleEmpresaComponent
   ],
   imports: [
     BrowserModule,
